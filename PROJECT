@@ -1,0 +1,11 @@
+domain: kstiehl
+layout: go.kubebuilder.io/v2
+projectName: hetzner-server
+repo: github.com/kstiehl/hetzner-operator
+resources:
+- group: hetzner
+  kind: Server
+  version: v1
+version: 3-alpha
+plugins:
+  go.sdk.operatorframework.io/v2-alpha: {}
