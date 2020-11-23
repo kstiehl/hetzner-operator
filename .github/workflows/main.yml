@@ -15,4 +15,4 @@ jobs:
       - shell: bash
         run: |
           sudo apt update
-          sudo apt install -y golange make
+          sudo apt install -y golang make
