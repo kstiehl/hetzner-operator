@@ -28,7 +28,9 @@ jobs:
       
       - name: test controller
         shell: bash
-        run: make test
+        run: |
+          source Makefile
+          make test
  
       - name: docker-build
         uses: docker/setup-buildx-action@v1.0.3
