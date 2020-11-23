@@ -29,7 +29,6 @@ jobs:
       - name: test controller
         shell: bash
         run: |
-          source Makefile
           make test
  
       - name: docker-build
