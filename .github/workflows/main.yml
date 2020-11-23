@@ -16,7 +16,12 @@ jobs:
         shell: bash
         run: |
           sudo apt update
-          sudo apt install -y golang make
+          sudo apt install make
+          
+      - name: install go
+        uses: actions/setup-go@2.1.3
+        with:
+             go-version: 1.15
       
       - name: Checkout
         uses: actions/checkout@v2.3.4
@@ -24,4 +29,5 @@ jobs:
       - name: build
         shell: bash
         run: make
+     
   
