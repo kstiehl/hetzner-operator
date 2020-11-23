@@ -9,10 +9,12 @@ on: [push, workflow_dispatch]
 jobs:
      
   # This workflow contains a single job called "build"
-  init:
+  build:
     runs-on: ubuntu-latest
     steps:
       - shell: bash
         run: |
           sudo apt update
           sudo apt install -y golang make
+          make
+  
