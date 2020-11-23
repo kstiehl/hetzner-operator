@@ -22,5 +22,5 @@ jobs:
     steps:
       - shell: bash
         run: |
-          apt update
-          apt install -y golange make
+          sudo apt update
+          sudo apt install -y golange make
