@@ -22,6 +22,7 @@ import (
 	"github.com/go-logr/logr"
 	"github.com/hetznercloud/hcloud-go/hcloud"
 	hetznerv1 "github.com/kstiehl/hetzner-operator/api/v1"
+	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/tools/record"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -48,9 +49,13 @@ type ServerReconciler struct {
 
 func (r *ServerReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	ctx := context.Background()
-	_ = r.Log.WithValues("server", req.NamespacedName)
+	reqLogger := r.Log.WithValues("server", req.NamespacedName)
 	server := &hetznerv1.Server{}
 	err := r.Get(ctx, req.NamespacedName, server)
+	if errors.IsNotFound(err) {
+		reqLogger.Info("Resource has been deleted before event could be parsed")
+		return ctrl.Result{}, nil
+	}
 	if err != nil {
 		return ctrl.Result{}, err
 	}
